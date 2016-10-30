@@ -6,12 +6,17 @@ from Sdgdwljt.items import SdgdwljtItem
 class SdgdwljtSpider(scrapy.Spider):
 	name = "sdgdwljt"
 	allowed_domains = ["www.sdgdwljt.com"]
+
 	start_urls = [
 		"http://www.sdgdwljt.com/xwzx1/fgsdt/default.htm",
 	]
 	for i in range(1,50):
 		# 网站上只保留50个静态列表页面
 		start_urls.append("http://www.sdgdwljt.com/xwzx1/fgsdt/default_" + str(i) + ".htm")
+	start_urls.append("http://www.sdgdwljt.com/xwzx1/jtyw/default.htm")
+	for i in range(1,25):
+		# 网站上只保留25个静态列表页面
+		start_urls.append("http://www.sdgdwljt.com/xwzx1/jtyw/default_" + str(i) + ".htm")
 
 	def parse(self, response):
 		for selects in response.xpath('//div[@id="layout"]/div/div/ul/li'):
